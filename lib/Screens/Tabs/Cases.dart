@@ -1,4 +1,5 @@
 import 'package:covid_19_dashboard/Style/Theme.dart';
+import 'package:covid_19_dashboard/Widgets/ColorCard.dart';
 import 'package:flutter/material.dart';
 
 import 'package:pie_chart/pie_chart.dart';
@@ -14,14 +15,15 @@ class Cases extends StatefulWidget {
 
 class _CasesState extends State<Cases> {
   //
+  Map countryData;
+
+  List countryList;
   //
   var scaffoldKey = GlobalKey<ScaffoldState>();
 
   // JSON data
 
-  Map generalData;
-
-  List countryList;
+  static Map generalData;
 
   void fetchGeneralData() async {
     http.Response response = await http.get(
@@ -35,13 +37,13 @@ class _CasesState extends State<Cases> {
   @override
   void initState() {
     fetchGeneralData();
-    // fetchCountriesData();
     dataMap.putIfAbsent("Active Cases", () => 60);
     dataMap.putIfAbsent("Closed", () => 82);
     dataMap.putIfAbsent("Death", () => 18);
-    // fetchCountryData();
     super.initState();
   }
+
+  // Dispose(),
 
   //
   Map<String, double> dataMap = Map();
@@ -126,7 +128,7 @@ class _CasesState extends State<Cases> {
                           ColorCard(
                             number: generalData["data"]["currently_infected"]
                                 .toString(),
-                            text: 'Active Cases',
+                            text: 'Active Cases ',
                             color: AppTheme.yellow,
                           ),
                           ColorCard(
@@ -138,7 +140,7 @@ class _CasesState extends State<Cases> {
                           ColorCard(
                             number:
                                 generalData["data"]["death_cases"].toString(),
-                            text: 'Death Cases',
+                            text: 'Death Cases  ',
                             color: AppTheme.red,
                           ),
                         ],
@@ -149,114 +151,5 @@ class _CasesState extends State<Cases> {
               ],
             ),
           );
-  }
-}
-
-class SexCard extends StatelessWidget {
-  //
-  final String sex;
-  final String sexStats;
-
-  //
-  const SexCard({
-    Key key,
-    this.sex,
-    this.sexStats,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 100,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            sexStats,
-            style: TextStyle(fontSize: 20),
-          ),
-          Text(
-            sex,
-            style: TextStyle(fontSize: 14),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class ColorCard extends StatelessWidget {
-  final String number;
-  final String text;
-  final Color color;
-
-  const ColorCard({
-    Key key,
-    this.number,
-    this.text,
-    this.color,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Card(
-        child: Container(
-          height: 60,
-          child: Padding(
-            padding: const EdgeInsets.all(15),
-            child: Row(
-              children: <Widget>[
-                ColorDot(
-                  color: color,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 15),
-                  child: Container(
-                    child: Text(
-                      text,
-                      style: TextStyle(
-                          fontSize: 17,
-                          fontWeight: FontWeight.w500,
-                          color: AppTheme.defaultBlack),
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(left: 110),
-                  child: Text(
-                    number,
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: AppTheme.defaultBlack,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class ColorDot extends StatelessWidget {
-  final Color color;
-  const ColorDot({Key key, this.color}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        Container(
-            height: 18,
-            width: 18,
-            decoration: BoxDecoration(
-                color: color, borderRadius: BorderRadius.circular(5))),
-      ],
-    );
   }
 }

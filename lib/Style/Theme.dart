@@ -4,7 +4,7 @@ class AppTheme {
   AppTheme._();
 
   static const Color buttonBlack = Color(0xFF3C4954);
-  static const Color defaultBlack = Color(0xFF3C4954); 
+  static const Color defaultBlack = Color(0xFF3C4954);
   static const Color borderBlack = Color(0xFFF4F4F6);
   static const Color yellow = Color(0xFFC28E00);
   static const Color green = Color(0xFF7ED321);
@@ -18,13 +18,13 @@ class StringsData {
   static const String welcomeString =
       'Protect yourself and others around you by knowing the facts and taking appropriate precautions.';
   static const String welcomeButtonString = 'GET STARTED';
-  static const String welcomeTitleString = 'COVID-19';
+  static const String welcomeTitleString = 'World Stats';
 
   static const TextStyle boldFont =
       TextStyle(fontSize: 32, fontWeight: FontWeight.w600);
 
   static const TextStyle semiBoldFont =
-      TextStyle(fontSize: 25, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 }
 
 class ImageData {
