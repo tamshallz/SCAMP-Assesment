@@ -12,4 +12,4 @@ User should be able to search for countries
 
 User should be able to rank countries in order
 
-![image](assets/images/corona.gif=200x200)
+![image](assets/images/corona.gif)
